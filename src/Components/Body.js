@@ -16,23 +16,26 @@ const Body = () => {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          //fetch filtered data
-          const data = filterData(searchText, restaurantList);
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button
+          className="search-btn"
+          onClick={() => {
+            //fetch filtered data
+            const data = filterData(searchText, restaurants);
 
-          //store filterd data
-          setRestaurantList(data);
-        }}
-      >
-        Search
-      </button>
+            //store filterd data
+            setRestaurantList(data);
+          }}
+        >
+          Search
+        </button>
+      </div>
       <div className="restaurantList">
         {restaurantList.map((restaurant) => {
           return (
