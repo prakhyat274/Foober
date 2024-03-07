@@ -1,8 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import logo from './navLogo.svg';
+export const IMG_CDN_LINK =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-const restaurants = [
+export const restaurants = [
   {
     info: {
       id: "45606",
@@ -742,62 +741,3 @@ const restaurants = [
     },
   },
 ];
-
-const Navbar = () => {
-    return (
-        <div className="navbar">
-            <img alt="website-logo" src={logo}/>
-            <div className="nav-links">
-                <ul>
-                    <li><a href="/search">Search</a></li>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/aboutus">About Us</a></li>
-                    <li><a href="/contactus">Cart</a></li>
-                </ul>
-            </div>
-        </div>
-    )
-};
-
-const RestaurantCard = ({restaurant}) => {
-    return(
-        <div className="restaurantCard">
-            <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/` + restaurant.cloudinaryImageId}/>
-            <div className="restaurantDesc">
-                <h3 style={{fontSize: "14px"}}>{restaurant.name}</h3>
-                <p>{restaurant.avgRating}</p>
-                <h6>{restaurant.cuisines.join(", ")}</h6>
-            </div>
-        </div>
-    )
-};
-
-const Body = () => {
-    return (
-        <div className="restaurantList">
-            {restaurants.map((restaurant) => {
-                return <RestaurantCard restaurant={restaurant.info} key={restaurant.info.id}></RestaurantCard>
-            })}
-        </div>
-    )
-};
-
-const Footer = () => {
-    return (
-        <h1>Footer</h1>
-    )
-};
-
-const AppLayout = () => {
-    return (
-        <>
-        <Navbar />
-        <Body />
-        <Footer />
-        </>
-    )
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);
