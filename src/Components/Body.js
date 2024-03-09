@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
-import { restaurants } from "../config";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
+import { SWIGGY_API } from "../config";
 
 function filterData(searchText, restaurants) {
   const filteredData = restaurants.filter((restaurant) =>
@@ -10,11 +11,30 @@ function filterData(searchText, restaurants) {
 }
 
 const Body = () => {
+  useEffect(() => {
+    fetch(SWIGGY_API)
+      .then(function (data) {
+        return data.json();
+      })
+      .then(function (json) {
+        setAllRestaurants(
+          json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+        );
+        setFilteredRestaurant(
+          json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+        );
+      });
+  }, []);
+
+  const [allRestaurants, setAllRestaurants] = useState([]);
+
   const [searchText, setSearchText] = useState("");
 
-  const [restaurantList, setRestaurantList] = useState(restaurants);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
-  return (
+  return allRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="search-box">
         <input
@@ -27,24 +47,43 @@ const Body = () => {
           className="search-btn"
           onClick={() => {
             //fetch filtered data
-            const data = filterData(searchText, restaurants);
+            const data = filterData(searchText, allRestaurants);
 
             //store filterd data
-            setRestaurantList(data);
+            setFilteredRestaurant(data);
           }}
         >
-          Search
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            enableBackground="new 0 0 24 24"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            focusable="false"
+            style={{
+              pointerEvents: "none",
+              display: "block",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <path d="m20.87 20.17-5.59-5.59C16.35 13.35 17 11.75 17 10c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.75 0 3.35-.65 4.58-1.71l5.59 5.59.7-.71zM10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path>
+          </svg>
         </button>
       </div>
       <div className="restaurantList">
-        {restaurantList.map((restaurant) => {
-          return (
-            <RestaurantCard
-              restaurant={restaurant.info}
-              key={restaurant.info.id}
-            ></RestaurantCard>
-          );
-        })}
+        {filteredRestaurant.length === 0 ? (
+          <h1>No restaurant available</h1>
+        ) : (
+          filteredRestaurant.map((restaurant) => {
+            return (
+              <RestaurantCard
+                restaurant={restaurant.info}
+                key={restaurant.info.id}
+              ></RestaurantCard>
+            );
+          })
+        )}
       </div>
     </>
   );
