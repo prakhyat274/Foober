@@ -1,13 +1,13 @@
 const ShimmerCard = () => {
   return (
     <div className="restaurantCard">
-      <img
-        style={{
-          backgroundColor: "lightgrey",
-          minHeight: "200px",
-          minWidth: "200px",
-        }}
-      />
+      <div className="cardImageWrapper">
+        <img
+          style={{
+            backgroundColor: "lightgrey",
+          }}
+        />
+      </div>
       <div className="restaurantDesc">
         <h3
           style={{

@@ -1,15 +1,19 @@
 import { IMG_CDN_LINK } from "../config";
 
-const RestaurantCard = ({ restaurant }) => {
+const RestaurantCard = ({ name, cuisines, avgRating, cloudinaryImageId }) => {
   return (
-    <div className="restaurantCard">
-      <img src={IMG_CDN_LINK + restaurant.cloudinaryImageId} />
-      <div className="restaurantDesc">
-        <h3 style={{ fontSize: "14px" }}>{restaurant.name}</h3>
-        <p>{restaurant.avgRating}</p>
-        <h6>{restaurant.cuisines.join(", ")}</h6>
+    <a>
+      <div className="restaurantCard">
+        <div className="cardImageWrapper">
+          <img src={IMG_CDN_LINK + cloudinaryImageId} />
+        </div>
+        <div className="restaurantDesc">
+          <h2 style={{ fontSize: "18px" }}>{name}</h2>
+          <p>{avgRating}</p>
+          <h6>{cuisines.join(", ")}</h6>
+        </div>
       </div>
-    </div>
+    </a>
   );
 };
 

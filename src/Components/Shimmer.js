@@ -10,17 +10,13 @@ const Shimmer = () => {
         margin: "40px 0",
         minHeight: "80vh",
       }}
+      className="body"
     >
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
-      <ShimmerCard />
+      {Array(12)
+        .fill("")
+        .map((e, index) => (
+          <ShimmerCard key={index} />
+        ))}
     </div>
   );
 };

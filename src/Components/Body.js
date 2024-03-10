@@ -35,7 +35,7 @@ const Body = () => {
   return allRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <>
+    <div className="body">
       <div className="search-box">
         <input
           type="text"
@@ -78,14 +78,14 @@ const Body = () => {
           filteredRestaurant.map((restaurant) => {
             return (
               <RestaurantCard
-                restaurant={restaurant.info}
+                {...restaurant.info}
                 key={restaurant.info.id}
               ></RestaurantCard>
             );
           })
         )}
       </div>
-    </>
+    </div>
   );
 };
 
