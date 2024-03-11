@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "../../navLogo.svg";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [userLoginStatus, setUserLoginStatus] = useState(false);
@@ -9,13 +10,13 @@ const Navbar = () => {
       <div className="nav-links">
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/aboutus">About Us</a>
+            <Link to="/aboutus">About Us</Link>
           </li>
           <li>
-            <a href="/cart">Cart</a>
+            <Link to="/cart">Cart</Link>
           </li>
           <li>
             {userLoginStatus ? (
