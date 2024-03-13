@@ -1,12 +1,11 @@
-import { useRouteError } from "react-router-dom";
-
 const Error = () => {
-  const { status, statusText } = useRouteError();
   return (
-    <div>
-      <h1>Oops!! Page Not Found</h1>
-      <h3>{status}</h3>
-      <p>{statusText}</p>
+    <div className="errorAlert">
+      <p>
+        Whoa there, hacker alert! You've stumbled upon the secret backdoor to
+        our virtual fish market. Keep this under your hat or the fish might get
+        suspicious. Shh, don't let the sushi roll!
+      </p>
     </div>
   );
 };

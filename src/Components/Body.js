@@ -2,15 +2,15 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API } from "../config";
-
-function filterData(searchText, restaurants) {
-  const filteredData = restaurants.filter((restaurant) =>
-    restaurant.info.name.includes(searchText)
-  );
-  return filteredData;
-}
+import { filterData } from "../utils/helper";
 
 const Body = () => {
+  const [allRestaurants, setAllRestaurants] = useState([]);
+
+  const [searchText, setSearchText] = useState("");
+
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+
   useEffect(() => {
     fetch(SWIGGY_API)
       .then(function (data) {
@@ -26,12 +26,6 @@ const Body = () => {
       });
   }, []);
 
-  const [allRestaurants, setAllRestaurants] = useState([]);
-
-  const [searchText, setSearchText] = useState("");
-
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-
   return allRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -46,10 +40,8 @@ const Body = () => {
         <button
           className="search-btn"
           onClick={() => {
-            //fetch filtered data
             const data = filterData(searchText, allRestaurants);
 
-            //store filterd data
             setFilteredRestaurant(data);
           }}
         >

@@ -1,9 +1,7 @@
-import { useState } from "react";
-import logo from "../../navLogo.svg";
+import logo from "../assets/img/navLogo.svg";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [userLoginStatus, setUserLoginStatus] = useState(false);
   return (
     <div className="navbar">
       <img alt="website-logo" src={logo} />
@@ -19,21 +17,7 @@ const Navbar = () => {
             <Link to="/cart">Cart</Link>
           </li>
           <li>
-            {userLoginStatus ? (
-              <button
-                className="login-btn"
-                onClick={() => setUserLoginStatus(false)}
-              >
-                Logout
-              </button>
-            ) : (
-              <button
-                className="login-btn"
-                onClick={() => setUserLoginStatus(true)}
-              >
-                LogIn
-              </button>
-            )}
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       </div>

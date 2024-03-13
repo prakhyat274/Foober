@@ -12,7 +12,7 @@ const Shimmer = () => {
       }}
       className="body"
     >
-      {Array(12)
+      {Array(15)
         .fill("")
         .map((e, index) => (
           <ShimmerCard key={index} />
