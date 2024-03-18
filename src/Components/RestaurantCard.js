@@ -1,5 +1,6 @@
 import { IMG_CDN_LINK } from "../config";
 import { Link } from "react-router-dom";
+import RatingCircle from "./RatingCircle";
 
 const RestaurantCard = ({
   id,
@@ -7,6 +8,7 @@ const RestaurantCard = ({
   cuisines,
   avgRating,
   cloudinaryImageId,
+  sla,
 }) => {
   return (
     <Link to={"/restaurant/" + id}>
@@ -16,7 +18,14 @@ const RestaurantCard = ({
         </div>
         <div className="restaurantDesc">
           <h2 style={{ fontSize: "18px" }}>{name}</h2>
-          <p>{avgRating}</p>
+          <div style={{ display: "flex" }}>
+            <RatingCircle />
+            <p
+              style={{ fontSize: "15px", fontWeight: "600", marginLeft: "5px" }}
+            >
+              {avgRating + " • " + sla.slaString}
+            </p>
+          </div>
           <h6>{cuisines.join(", ")}</h6>
         </div>
       </div>

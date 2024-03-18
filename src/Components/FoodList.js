@@ -24,7 +24,30 @@ const FoodList = ({ items }) => {
                 {item?.card?.info?.imageId ? (
                   <img src={IMG_CDN_LINK + item?.card?.info?.imageId} />
                 ) : null}
-                <button>Add to Cart +</button>
+                <button
+                  className={item?.card?.info?.imageId ? "buttonOnImage" : ""}
+                >
+                  <h5
+                    style={{
+                      color: "#60b246",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    ADD
+                  </h5>
+                  <h6
+                    style={{
+                      color: "#60b246",
+                      fontSize: "12px",
+                      position: "absolute",
+                      top: "-5px",
+                      right: "0",
+                    }}
+                  >
+                    +
+                  </h6>
+                </button>
               </div>
             </div>
           </div>
